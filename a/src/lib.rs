@@ -1,7 +1,4 @@
-pub fn bar() {
-    zz::foo::<()>()
-}
+pub fn foo() {}
 
-pub fn baz() {
-    zz::foo::<()>()
-}
+#[no_mangle]
+pub extern "C" fn bar() {}

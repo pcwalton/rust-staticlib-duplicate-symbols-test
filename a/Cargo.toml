@@ -3,12 +3,8 @@ name = "a"
 version = "0.1.0"
 edition = "2021"
 
-[features]
-bar = []
-baz = []
-default = []
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies.zz]
-path = "../zz"
+[lib]
+# Even though we are building an rlib and a staticlib, if we pass both `--crate-type rlib` and
+# `--crate-type staticlib` to `rustc` then the union of the two exports will be emitted, which will
+# not reproduce the bug. We must use two separate Cargo invocations.
+crate-type = ["rlib"]
